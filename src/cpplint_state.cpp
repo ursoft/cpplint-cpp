@@ -51,7 +51,7 @@ void CppLintState::PrintErrorCounts() {
                   "\' errors found: " + std::to_string(item.second) + "\n");
     }
     if (m_error_count > 0) {
-        PrintInfo("Total errors found: " + std::to_string(m_error_count) + "\n");
+        PrintError("Total errors found: " + std::to_string(m_error_count) + "\n");
     }
 }
 
@@ -98,7 +98,7 @@ void CppLintState::Error(const std::string& filename, size_t linenum,
            const std::string& category, int confidence,
            const std::string& message) {
     if (m_output_format == OUTPUT_VS7) {
-        cerr_buffer << filename << "(" << linenum << "): error cpplint: [" <<
+        cerr_buffer << filename << "(" << linenum << "): error: [" <<
                        category << "] " << message << " [" << confidence << "]\n";
     } else if (m_output_format == OUTPUT_ECLIPSE) {
         cerr_buffer << filename << ":" << linenum << ": warning: " <<

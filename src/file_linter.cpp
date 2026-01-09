@@ -4085,7 +4085,7 @@ void FileLinter::ProcessFile() {
         size_t linenum = 1;
         int status = LINE_OK;
         std::string buffer;
-        buffer.resize(120);
+        buffer.resize(4096);
         // Note: We can't use getline cause it trims NUL bytes and a linefeed at EOF.
         while ((status & LINE_EOF) == 0) {
             std::string line = GetLine(*stream, &buffer, &status);
@@ -4155,5 +4155,5 @@ void FileLinter::ProcessFile() {
     // Suppress printing anything if --quiet was passed unless the error
     // count has increased after processing this file.
     if (!m_cpplint_state->Quiet() || m_has_error)
-        m_cpplint_state->PrintInfo("Done processing " + m_filename + "\n");
+        m_cpplint_state->PrintError("Done processing " + m_filename + "\n");
 }

@@ -37,8 +37,17 @@ int main(int argc, char** argv) {
 
     // Generate a future for each file
     int num_threads = cpplint_state.GetNumThreads();
-    if (num_threads == 1) {
-        // Single-threading
+    if (num_threads == 1) { // Single-threading
+        if (filenames.empty()) { //stdin scenario
+            std::string line;
+            while (std::getline(std::cin, line)) {
+                ProcessFile(line, &cpplint_state, global_options);
+                if (!cpplint_state.Quiet() || cpplint_state.ErrorCount() > 0)
+                    cpplint_state.PrintErrorCounts();
+                cpplint_state.FlushThreadStream();
+                cpplint_state.ResetErrorCounts();
+            }
+        }
         for (const fs::path& filename : filenames)
             ProcessFile(filename, &cpplint_state, global_options);
     } else {

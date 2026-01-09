@@ -1732,6 +1732,7 @@ TEST_F(LinesLinterTest, CheckAssert) {
 
 TEST_F(LinesLinterTest, AltTokensPass) {
     ProcessLines({
+        "EXPECT_EQ(\"2=;3=;4'=\"sv, csb1->Build()) << \"ConStr1\";  // pass and user",
         "#include \"base/false-and-false.h\"",
         "true nand true;",
         "true nor true;",

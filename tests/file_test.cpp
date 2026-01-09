@@ -60,7 +60,7 @@ TEST_F(FileLinterTest, NullBytes) {
         "  [readability/nul] [5]\n"
         "./tests/test_files/nullbytes.c:2:  "
         "Line contains NUL byte."
-        "  [readability/nul] [5]\n";
+        "  [readability/nul] [5]\nDone processing ./tests/test_files/nullbytes.c\n";
     EXPECT_ERROR_STR(expected);
 }
 
@@ -75,7 +75,7 @@ TEST_F(FileLinterTest, InvalidUTF) {
         "  [readability/utf8] [5]\n"
         "./tests/test_files/invalid_utf.c:2:  "
         "Line contains invalid UTF-8 (or Unicode replacement character)."
-        "  [readability/utf8] [5]\n";
+        "  [readability/utf8] [5]\nDone processing ./tests/test_files/invalid_utf.c\n";
     EXPECT_ERROR_STR(expected);
 }
 
@@ -87,6 +87,6 @@ TEST_F(FileLinterTest, Crlf) {
     const char* expected =
         "./tests/test_files/crlf.c:1:  "
         "Unexpected \\r (^M) found; better to use only \\n"
-        "  [whitespace/newline] [1]\n";
+        "  [whitespace/newline] [1]\nDone processing ./tests/test_files/crlf.c\n";
     EXPECT_ERROR_STR(expected);
 }

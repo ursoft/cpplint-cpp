@@ -460,9 +460,9 @@ std::vector<fs::path> Options::ParseArguments(int argc, char** argv,
         }
         filenames.emplace_back(fs::canonical(p).make_preferred());
     }
-
-    if (filenames.size() == 0)
-        PrintUsage("No files were specified.");
+    //STDIN will be source of filenames
+    //if (filenames.size() == 0)
+    //    PrintUsage("No files were specified.");
 
     if (recursive)
         filenames = ExpandDirectories(filenames);

@@ -280,7 +280,7 @@ bool IsCppString(const std::string& line) {
             if (!inside_char) {
                 ++count;
             }
-        } else if (c == '\'') {
+        } else if (c == '\'' && 0 == (count & 1)) {
             inside_char = !inside_char;
         }
     }
